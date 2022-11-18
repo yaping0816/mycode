@@ -24,7 +24,6 @@ def main(list):
         elif user_choice.upper()=="S":
             list = list[:5]
 
-       
        #loop through the list, slice the question and answers
         while i<len(list):
             question=list[i]["question"]
@@ -53,7 +52,7 @@ def main(list):
             user_input = input("What's your choice?(A,B,C or D)\n>").upper()
           
             #check whether the choice is the correct answer and move to next question if it is, exit the game if it isn't
-            if user_input.lower() not in ["a", "b", "c", "d"] and user_input.lower() != "q":
+            if user_input.lower() not in ["a", "b", "c", "d", "q"]:
                 print("You must type A, B, C or D. Try again!")
                 continue
             #user can type q to exit the game
