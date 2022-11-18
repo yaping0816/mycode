@@ -2,7 +2,7 @@
 import random
 import mini_project1_data
 
-print("\nThis game is to test how well do you know 'Friends'.\nThere are 2 versions to play.\nLong version consists of 10 questions and short version consists of 5 questions.\nYou only got one chance to guess the correct answer.\nYou can exit the game by typing q or ctrl c at any time. Good luck!")
+print("-------------------------------------------------------------------\nThis game is to test how well do you know 'Friends'.\nThere are 2 versions to play.\nLong version consists of 10 questions and short version consists of 5 questions.\nYou only got one chance to guess the correct answer.\nYou can exit the game by typing q or ctrl c at any time. Good luck!\n--------------------------------------------------------------------")
 
 def main(list):
     #random display the questions every time
@@ -23,6 +23,7 @@ def main(list):
         #slice the original list to 5 element if user chose to play a short version
         elif user_choice.upper()=="S":
             list = list[:5]
+            # print(len(list))
 
        #loop through the list, slice the question and answers
         while i<len(list):
