@@ -1,66 +1,29 @@
 #!usr/bin/env python3
 import random
-# data of questions and answers
-quizlist = [
-    {
-        "question": "Which of the following is Ross NOT allergic to?",
-        "correct_answer": ["Bananas"],
-        "incorrect_answers": ["Lobster", "Kiwi","Peanuts"]
-    },
-    {
-        "question": "What's in Monica's locked closet?",
-        "correct_answer": ["A whole bunch of junk"],
-        "incorrect_answers": ["Candy and chocolate", "Skeletons","Cleaning equipment"]
-    },
-    {
-        "question": "Ross' bald girlfriend was named:",
-        "correct_answer": ["Bonnie"],
-        "incorrect_answers": ["Beth", "Veronica","Vanessa"]
-    },
-    {
-        "question": "What famous person does Phoebe think is her grandfather?",
-        "correct_answer": ["Albert Einstein"],
-        "incorrect_answers": ["Gary Grant", "Dwight D. Eisenhower","Robert Redford"]
-    },
-    {
-        "question": "Which Friend has a tattoo?",
-        "correct_answer": ["Rachel"],
-        "incorrect_answers": ["Monica", "Phoebe","Ross"]
-    },
-    {
-        "question": "Who said, 'Could I BE wearing any more clothes?'",
-        "correct_answer": ["Joey"],
-        "incorrect_answers": ["Monica", "Gunther","Chandler"]
-    },
-    {
-        "question": "What song does Ross sing to Emma to get her to stop crying?'",
-        "correct_answer": ["Baby Got Back"],
-        "incorrect_answers": ["Thong Song", "Walk This Way","Sweet Child O'Mine"]
-    },
-    {
-        "question": "What toy is always on Joey and Chandler's door?",
-        "correct_answer": ["A Magna Doodle"],
-        "incorrect_answers": ["A Slinky", "An Etch-a-Sketch","A Wooly Willy"]
-    },
-    {
-        "question": "Whose pizza do the girls get by accident in Season 1?",
-        "correct_answer": ["George Stephanopoulous"],
-        "incorrect_answers": ["Tom Cruise's", "John F. Kennedy Jr.'s","Ethan Hawke's"]
-    },
-    {
-        "question": "Which Friend has only nine toes?",
-        "correct_answer": ["Chandler"],
-        "incorrect_answers": ["Ross", "phoebe","Joey"]
-    },
-]
+import mini_project1_data
+
+print("\nThis game is to test how well do you know 'Friends'.\nThere are 2 versions to play.\nLong version consists of 10 questions and short version consists of 5 questions.\nYou only got one chance to guess the correct answer.\nYou can exit the game by typing q or ctrl c at any time. Good luck!")
 
 def main(list):
     #random display the questions every time
     random.shuffle(list)
+    
     try:
         i=0
         right = 0 #track how many right answers the user get
-        print("\nThis game is to test how well do you know 'Friends'.\nThere are 10 questions to answer and you only got one chance to guess the correct answer.\nYou can exit the game by typing q or ctrl c at any time. Good luck!")
+        user_choice = input("Type L for long version, and type S for short version:\n>")
+        #users are only allowed to type l or s
+        if user_choice.upper() not in ["L", "S"] and user_choice.lower() != "q":
+            print("You can only type L or S. Try again.")
+            main(mini_project1_data.quizlist)
+        #exit game if input is q
+        elif user_choice.lower()=="q":
+            print("Goodbye!")
+            exit()
+        #slice the original list to 5 element if user chose to play a short version
+        elif user_choice.upper()=="S":
+            list = list[:5]
+
        
        #loop through the list, slice the question and answers
         while i<len(list):
@@ -104,7 +67,8 @@ def main(list):
             else:
                 print(f"{user_input} is not the correct answer! you guessed {right} question(s) right! Try it next time!")
                 break   
-             
+
+            #update the counter
             i+=1
            
     #exit game by ctrl c
@@ -113,9 +77,8 @@ def main(list):
         exit()
 
     #print congratulations if user got them all right
-   
-    if right == 10:
-        print("Congratulations! You guessed all of the questions right. You are a pro!")
+    if right == len(list):
+        print(f"Congratulations! You guessed all of the {right} questions right. You are a pro!")
 
 
-main(quizlist)
+main(mini_project1_data.quizlist)
