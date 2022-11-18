@@ -31,7 +31,7 @@ def main(list):
             question=list[i]["question"]
             #combine the correct answer and incorrect answser
             choices = list[i]["correct_answer"] + list[i]["incorrect_answers"]
-            #then shuffle them and put them into a dictionary
+            #then shuffle them so they can be given randomly to a,b,c,d
             random.shuffle(choices)
             answers_dic = {}
             answers_dic["A"] = choices[0]
@@ -53,6 +53,8 @@ def main(list):
             #let user type his choice
             user_input = input("What's your choice?(A,B,C or D)\n>").upper()
           
+            #print hint to user
+            hint = list[i]["hint"]
             #check whether the choice is the correct answer and move to next question if it is, exit the game if it isn't
             if user_input.lower() not in ["a", "b", "c", "d", "q"]:
                 print("You must type A, B, C or D. Try again!")
@@ -63,10 +65,10 @@ def main(list):
                 break
             elif answers_dic[user_input] == list[i]["correct_answer"][0]:
                 right += 1
-                print("You guessed right.")
+                print(f"Correct. {hint}")
             
             else:
-                print(f"{user_input} is not the correct answer! you guessed {right} question(s) right! Try it next time!")
+                print(f"Wrong!{hint}\nYou guessed {right} question(s) right! Try it next time!")
                 break   
 
             #update the counter
@@ -79,7 +81,7 @@ def main(list):
 
     #print congratulations if user got them all right
     if right == len(list):
-        print(f"-------------------------------------------------------------------------\nCongratulations! You guessed all of the {right} questions right. You are a pro!")
+        print(f"Congratulations! You guessed all of the {right} questions right. You are a pro!")
 
 if __name__ == "__main__":
     main(mini_project1_data.quizlist)
