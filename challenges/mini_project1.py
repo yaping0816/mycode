@@ -1,5 +1,6 @@
 #!usr/bin/env python3
 import random
+import os
 import mini_project1_data
 
 print("------------------------------------------------------------------------\nThis game is to test how well do you know 'Friends'.\nThere are 2 versions to play.\nLong version consists of 10 questions and short version consists of 5 questions.\nYou only got one chance to guess the correct answer.\nYou can exit the game by typing q or ctrl c at any time. Good luck!\n-------------------------------------------------------------------------")
@@ -25,6 +26,8 @@ def main(list):
             list = list[:5]
             # print(len(list))
 
+        #clear the game description  
+        os.system('clear')
        #loop through the list, slice the question and answers
         while i<len(list):
             print("-------------------------------------------------------------------------")
@@ -53,7 +56,7 @@ def main(list):
             #let user type his choice
             user_input = input("What's your choice?(A,B,C or D)\n>").upper()
           
-            #print hint to user
+            #the hint to user
             hint = list[i]["hint"]
             #check whether the choice is the correct answer and move to next question if it is, exit the game if it isn't
             if user_input.lower() not in ["a", "b", "c", "d", "q"]:
@@ -81,7 +84,7 @@ def main(list):
 
     #print congratulations if user got them all right
     if right == len(list):
-        print(f"Congratulations! You guessed all of the {right} questions right. You are a pro!")
+        print(f"--------Congratulations! You guessed all of the {right} questions right. You are a pro!--------")
 
 if __name__ == "__main__":
     main(mini_project1_data.quizlist)
