@@ -3,7 +3,8 @@ quizlist = [
     {
         "question": "Which of the following is Ross NOT allergic to?",
         "correct_answer": ["Bananas"],
-        "incorrect_answers": ["Lobster", "Kiwi","Peanuts"]
+        "incorrect_answers": ["Lobster", "Kiwi","Peanuts"],
+        "hint":"In Season 2 Episode 6, The One With the Baby on the Bus, Monica says, 'You’re allergic to lobster, peanuts, and… Oh my god.'The ‘Oh my god’ being kiwi as Ross had just eaten a kiwi-lime pie that Monica had baked, believing it to be a key-lime pie."
     },
     {
         "question": "What's in Monica's locked closet?",

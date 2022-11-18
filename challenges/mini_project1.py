@@ -2,7 +2,7 @@
 import random
 import mini_project1_data
 
-print("-------------------------------------------------------------------\nThis game is to test how well do you know 'Friends'.\nThere are 2 versions to play.\nLong version consists of 10 questions and short version consists of 5 questions.\nYou only got one chance to guess the correct answer.\nYou can exit the game by typing q or ctrl c at any time. Good luck!\n--------------------------------------------------------------------")
+print("------------------------------------------------------------------------\nThis game is to test how well do you know 'Friends'.\nThere are 2 versions to play.\nLong version consists of 10 questions and short version consists of 5 questions.\nYou only got one chance to guess the correct answer.\nYou can exit the game by typing q or ctrl c at any time. Good luck!\n-------------------------------------------------------------------------")
 
 def main(list):
     #random display the questions every time
@@ -27,6 +27,7 @@ def main(list):
 
        #loop through the list, slice the question and answers
         while i<len(list):
+            print("-------------------------------------------------------------------------")
             question=list[i]["question"]
             #combine the correct answer and incorrect answser
             choices = list[i]["correct_answer"] + list[i]["incorrect_answers"]
@@ -78,7 +79,7 @@ def main(list):
 
     #print congratulations if user got them all right
     if right == len(list):
-        print(f"Congratulations! You guessed all of the {right} questions right. You are a pro!")
+        print(f"-------------------------------------------------------------------------\nCongratulations! You guessed all of the {right} questions right. You are a pro!")
 
-
-main(mini_project1_data.quizlist)
+if __name__ == "__main__":
+    main(mini_project1_data.quizlist)
