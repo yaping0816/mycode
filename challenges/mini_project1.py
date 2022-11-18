@@ -71,7 +71,7 @@ def main(list):
                 print(f"Correct. {hint}")
             
             else:
-                print(f"Wrong!{hint}\nYou guessed {right} question(s) right! Try it next time!")
+                print(f"Wrong!{hint}\n--------You guessed {right} question(s) right! Try it next time!--------")
                 break   
 
             #update the counter
