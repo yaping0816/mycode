@@ -6,7 +6,10 @@
       <h3>{{quote}}</h3>
       <br>
       <form action = "/quotes/checkanswer" method = "POST">
-         <p>(Hint: Choose a character from the followings: {{ ", ".join(list)}})</p>
+         <p>Click the Details if you need a hint</p>
+         <details>
+            Choose a character from the followings: {{ ", ".join(list)}}
+         </details>
          <p>Enter the character name:</p>
          <p><input type = "text" name = "nm"></p>
          <p><input type = "submit" value = "submit"></p>
