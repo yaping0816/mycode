@@ -1,10 +1,18 @@
 #!/usr/bin/python3
-from flask import Flask, redirect, url_for, render_template,request
+from flask import Flask, redirect, url_for, render_template, request, abort
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 import requests
 import random
 
 # Flask constructor takes the name of current module (__name__) as argument
 app = Flask(__name__)
+
+limiter = Limiter(
+    app,
+    key_func=get_remote_address,
+    default_limits=["50 per day","20 per hour"]
+)
 
 # list of characters name for users to choose from
 characterlist = []
@@ -27,6 +35,7 @@ quote="" #track the current quote
 
 # This is the home page to start the game (127.0.0.1:2224/home)
 @app.route("/home") 
+@limiter.limit("5 per day")
 def hello_world():
     return render_template("homepage.html")
 
@@ -51,7 +60,8 @@ def display_quote(num):
     elif num == len(data):
         return render_template("winthegame.html")
     else:
-        return "Something went wrong!"
+        abort(400)
+
 
 @app.route("/quotes/checkanswer",methods=["POST","GET"])
 def checktheanswer():
