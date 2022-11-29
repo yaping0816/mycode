@@ -11,22 +11,13 @@ app = Flask(__name__)
 limiter = Limiter(
     app,
     key_func=get_remote_address,
-    default_limits=["50 per day","20 per hour"]
+    default_limits=["500 per day","100 per hour"]
 )
 
 # list of characters name for users to choose from
-characterlist = []
-# call simpsons api here so I don't need to cal api and get different data every time when i go to the quotes endpoint
-data=requests.get('https://thesimpsonsquoteapi.glitch.me/quotes?count=5').json()
-
-
-for obj in data:
-    character = obj["character"]
-    characterlist.append(character)
-# remove the duplicate names from the list
-characterlist = list(dict.fromkeys(characterlist))
-# shuffle the character names inside of the list
-random.shuffle(characterlist)
+# characterlist = []
+#data is used to save the response body from api call
+data = {}
      
 index =0 # track the current position
 rightcharacter="" # track the right answer
@@ -37,6 +28,9 @@ quote="" #track the current quote
 @app.route("/home") 
 @limiter.limit("5 per day")
 def hello_world():
+    global data
+    # get different quotes every time when user go to home page
+    data=requests.get('https://thesimpsonsquoteapi.glitch.me/quotes?count=5').json()
     return render_template("homepage.html")
 
 # Whoever go to /quotes endpoint can cheat because he can see all of the quotes with the characters
@@ -52,6 +46,15 @@ def display_quote(num):
     global quote
     num = int(num)
     index = num
+    characterlist = []
+    for obj in data:
+        character = obj["character"]
+        characterlist.append(character)
+    # remove the duplicate names from the list
+    characterlist = list(dict.fromkeys(characterlist))
+    # shuffle the character names inside of the list
+    random.shuffle(characterlist)
+
     if num < len(data):
         rightcharacter = data[num]["character"]
         quote = data[num]["quote"]
